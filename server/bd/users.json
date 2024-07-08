@@ -4,5 +4,11 @@
     "username": "mathvbl",
     "email": "mathvbl@gmail.com",
     "password": "$2b$10$oRVnYTbglqYXqZWR2yM2deZY7TEFBZyPjSU5u/hui5WAKBChK3PVm"
+  },
+  {
+    "id": 2,
+    "username": "Waldomiro",
+    "email": "devwaldomiroromao@gmail.com",
+    "password": "$2b$10$xnLMPDy9v8sl21UDcLKwcOJNMqp/kXlDX1bicbrPVP5gYiRT.H0e6"
   }
 ]

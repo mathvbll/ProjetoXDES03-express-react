@@ -1,39 +1,37 @@
-import React from "react";
+import React, { useState } from 'react';
 import { FaTimes } from "react-icons/fa";
-
+import Axios from 'axios';
 import "./Card.css";
 
 function Card({ cardData, closeModal }) {
-    const { name, level, atk, def, desc, card_images } = cardData;
+    const { id, name, level, atk, def, desc, card_images } = cardData;
     const imageUrl = card_images && card_images.length > 0 ? card_images[0].image_url : "";
 
-    const addHandler = () =>
-    {
+    const [error, setError] = useState(null);
+
+    const addHandler = (e) => {
         e.preventDefault();
 
-        Axios.post('http://localhost:3001/addcard/${name}', {
-            name: name
-        }).then((response) => {
+        const token = localStorage.getItem('token');
 
+        Axios.put("http://localhost:3001/cards/deck", {
+            card: id
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(() => {
+            alert("Card added!");
         }).catch((error) => {
-            setError("There was an error adding the card");
-        })
-
+            setError("There was an error adding the card!");
+        });
     }
 
-    const deleteHandler = () =>
-    {
-        e.preventDefault()
+    const deleteHandler = (e) => {
+        e.preventDefault();
 
-        Axios.delete('http://localhost:3001/deletecard/${name}', {
-            name: name
-        }).then( (response) => {
-
-        }).catch( (error) => {
-            setError("There was an error deleting card.")
-        })
+        // Implemente a lógica para remover o card do deck aqui.
     }
-
 
     return (
         <div className="card-overlay" onClick={closeModal}>
@@ -50,9 +48,10 @@ function Card({ cardData, closeModal }) {
                     <h3 className="description">{desc}</h3>
                 </div>
                 <div>
-                    <button onClick={addHandler()}>ADD TO DECK</button>
-                    <button onClick={deleteHandler()}>REMOVE FROM DECK</button>
+                    <button onClick={addHandler}>ADD TO DECK</button>
+                    <button onClick={deleteHandler}>REMOVE FROM DECK</button>
                 </div>
+                {error && <p className="error-message">{error}</p>}
             </div>
         </div>
     );

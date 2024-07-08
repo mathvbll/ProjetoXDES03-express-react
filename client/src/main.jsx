@@ -16,15 +16,26 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
-      { path: '', element: <Home /> }, // Add this route
+      { path: '/', element: <Login /> },
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Register /> }
     ]
   },
   {
     path: '/home',
-    element: 
+    element: (
+      <ProtectedRoute>
         <Home />
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: '/deck',
+    element: (
+      <ProtectedRoute>
+        <Deck />
+      </ProtectedRoute>
+    )
   }
 ])
 

@@ -15,13 +15,13 @@ function Register() {
     const registerUser = (e) => {
         e.preventDefault();
 
-        Axios.post('http://localhost:3001/register', {
+        Axios.post('http://localhost:3001/auth/register', {
             username: username,
             email: email,
             password: password
         })
         .then((response) => {
-            localStorage.setItem('token', response.data.token);
+            //localStorage.setItem('token', response.data.token);
             alert("User registered!");
             navigate('/login');  // Redireciona para a página de login
         })

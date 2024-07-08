@@ -14,7 +14,7 @@ function Login() {
     const logUser = (e) => {
         e.preventDefault();
 
-        Axios.post('http://localhost:3001/login', {
+        Axios.post('http://localhost:3001/auth/login', {
             username: username,
             password: password
         })
