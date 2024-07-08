@@ -8,70 +8,39 @@ import './Deck.css'; // Adicionando o CSS para o contêiner rolável
 import Header from './Header'
 
 function Deck({ id }) {
+    const [username, setUsername] = useState("")
     const [cards, setCards] = useState([]);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const location = useLocation();
 
-    const [username, setUsername] = useState('');
+    useEffect ( () => {
 
-    const [isModal, setIsModal] = useState(false);
-    const [cardData, setCardData] = useState({});
+        deckHandler()
 
-    const fetchCardData = () => {
-        fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${result.name}`)
-            .then((response) => response.json())
-            .then((json) => {
-                const card = json.data[0];
-                setCardData(card);
-            });
-    };
+    }, [])
 
-    const modalHandler = () => {
-        setIsModal(true);
-        fetchCardData();
-    };
+    const deckHandler = (e) =>
+    {
+        e.preventDefault()
 
+        Axios.get("http://localhost:3001/cards/deck", {
 
-    useEffect(() => {
-        // Simulate fetching user data
-        const fetchUserData = async () => {
-            const token = localStorage.getItem('token');
-            if (token) {
-                setUsername('Usuário'); 
-            }
-        };
-
-        fetchUserData();
-    }, []);
-
-    useEffect(() => {
-        // Fetch cards data based on deck ID
-        const fetchCards = async () => {
-            try {
-                const response = await axios.get(`http://localhost:3001/deck/${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
-                setCards(response.data.cards);
-            } catch (error) {
-                console.error('Error fetching cards:', error);
-            }
-        };
-
-        if (isAuthenticated) {
-            fetchCards();
-        }
-    }, [id, isAuthenticated]);
+        }).then( () => {
+            setCards(response.data)
+            console.log(cards)
+        }).catch( () => {
+            setError("There was an error fetching the user's deck!");
+        })
+    }
 
 
     return (
       <div>
         <Header username={username} />
         <div className="deck-container">
-            {cards.map((card) => (
-                <Card key={card.id} cardData={card} />
-            ))}
+            <h1>User's Deck</h1>
+            {cards.map((card) => 
+            
+                {return <SearchResult result={result} key={index}/>}
+        )}
             <Link to="/home">View more cards.</Link>
         </div>
         </div>
