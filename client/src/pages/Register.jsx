@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
 import "./Register.css"
@@ -15,17 +15,20 @@ function Register() {
     const registerUser = (e) => {
         e.preventDefault();
 
-        Axios.post('http://localhost:3001/auth/register', {
+        axios.post('http://localhost:3001/auth/register', {
             username: username,
             email: email,
             password: password
         })
         .then((response) => {
-            //localStorage.setItem('token', response.data.token);
-            alert("User registered!");
-            navigate('/login');  // Redireciona para a página de login
-        })
-        .catch((error) => {
+            if(response.data != 'Email ou Usuario já existe' && response.data !='Erro interno'){
+                        alert("User registered!");
+                        navigate('/login');  // Redireciona para a página de login
+            }else{
+                alert(response.data);
+                navigate('/register');
+            }
+        }).catch((error) => {
             setError("There was an error registering the user!");
             console.error("There was an error registering the user!", error);
         });

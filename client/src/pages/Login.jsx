@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
 import "./Login.css"
@@ -14,14 +14,19 @@ function Login() {
     const logUser = (e) => {
         e.preventDefault();
 
-        Axios.post('http://localhost:3001/auth/login', {
+        axios.post('http://localhost:3001/auth/login', {
             username: username,
             password: password
         })
         .then((response) => {
-            localStorage.setItem('token', response.data.token);
-            navigate('/home');
-        })
+            if(response.data!='Usuário ou Senha Incorretos'){
+                localStorage.setItem('token', response.data);
+                navigate('/home');
+           }else{
+                alert(response.data); 
+                navigate('/login');
+           }
+         })
         .catch((error) => {
             setError("There was an error logging the user!");
             console.error("There was an error logging the user!", error);
