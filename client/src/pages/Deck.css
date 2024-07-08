@@ -1,0 +1,8 @@
+.deck-container {
+    max-height: 80vh; /* Altura máxima do contêiner rolável */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical */
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}

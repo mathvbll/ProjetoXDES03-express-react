@@ -1,0 +1,18 @@
+.auth-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.username-input {
+    background-color: white;
+}
+
+.email-input {
+    background-color: white;
+}
+
+.password-input {
+    background-color: white;
+}
