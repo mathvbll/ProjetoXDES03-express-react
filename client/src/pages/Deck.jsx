@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // Verifique se está importando 'axios' corretamente
+import Axios from 'axios'; // Verifique se está importando 'axios' corretamente
 import { Link } from 'react-router-dom';
 
 import './Deck.css'; // Adicionando o CSS para o contêiner rolável
@@ -18,7 +18,7 @@ function Deck({ id }) {
     const deckHandler = () => {
         const token = localStorage.getItem('token');
 
-        axios.get("http://localhost:3001/cards/deck", {
+        Axios.get("http://localhost:3001/cards/deck", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
