@@ -14,11 +14,13 @@ function Header({ username }) {
         navigate('/deck');
     };
 
+    
+
     return (
         <header className="header">
             <div className="greeting">Olá, {username}</div>
             <div className="header-buttons">
-                <button onClick={handleViewDecks}>Ver Decks</button>
+                <button onClick={handleViewDecks}>See Decks</button>
                 <button onClick={handleLogout}>Logout</button>
             </div>
         </header>

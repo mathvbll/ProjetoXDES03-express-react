@@ -10,5 +10,11 @@
     "username": "Waldomiro",
     "email": "devwaldomiroromao@gmail.com",
     "password": "$2b$10$xnLMPDy9v8sl21UDcLKwcOJNMqp/kXlDX1bicbrPVP5gYiRT.H0e6"
+  },
+  {
+    "id": 3,
+    "username": "Yuji",
+    "email": "yuji@wakabayshi.com",
+    "password": "$2b$10$omT/j/W3HOqSvywOCbX2yeGeQgp7NulQ9P62WTtI4lMwomRYLvz3O"
   }
 ]

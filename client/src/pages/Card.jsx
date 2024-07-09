@@ -15,13 +15,14 @@ function Card({ cardData, closeModal }) {
         const token = localStorage.getItem('token');
 
         Axios.put("http://localhost:3001/cards/deck", {
-            card: id
+            card: name
         }, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then(() => {
             alert("Card added!");
+            console.log(res.status)
         }).catch((error) => {
             setError("There was an error adding the card!");
         });
@@ -29,8 +30,22 @@ function Card({ cardData, closeModal }) {
 
     const deleteHandler = (e) => {
         e.preventDefault();
-
-        // Implemente a lógica para remover o card do deck aqui.
+    
+        const token = localStorage.getItem('token');
+    
+        Axios.delete("http://localhost:3001/cards/deck", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                card: id
+            }
+        }).then(() => {
+            alert("Card removed!");
+        }).catch((error) => {
+            setError("There was an error removing the card!");
+            console.error(error);
+        });
     }
 
     return (
